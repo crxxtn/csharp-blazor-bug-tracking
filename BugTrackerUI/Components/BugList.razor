@@ -1,5 +1,18 @@
 ﻿<h3>All Bugs</h3>
 
+<table>
+    @foreach(var bug in Bugs)
+    {
+       <tr>
+           <td>Id</td>
+           <td>Title</td>
+           <td>Description</td>
+           <td>Priority</td>
+       </tr>
+    }
+</table>
+
+
 @code {
 
     [Inject]
