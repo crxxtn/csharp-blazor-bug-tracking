@@ -18,6 +18,9 @@
     protected void HandleValidSubmit()
     {
         BugService.AddBug(AddBug);
-
     }
+
+    [Inject]
+    public NavigationManager NavService { get; set; }
+
 }
