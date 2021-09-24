@@ -9,8 +9,7 @@
 
     protected override void OnInitialized()
     {
-        Bugs = BugService.GetBugs();
-        Bugs.OrderBy(x => x.Priority);
+        Bugs = BugService.GetBugs().OrderBy(x => x.Priority).ToList();
     }
 
 
