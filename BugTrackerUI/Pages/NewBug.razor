@@ -14,5 +14,10 @@
     public IBugService BugService{ get; set; }
 
     public Bug AddBug { get; set; } = new Bug();
-    
+
+    protected void HandleValidSubmit()
+    {
+        BugService.AddBug(AddBug);
+
+    }
 }
