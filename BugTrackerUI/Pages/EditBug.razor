@@ -1,0 +1,34 @@
+﻿@page "/editbug/{id}"
+@inherits BugService
+
+<h3>Edit Bug</h3>
+
+<table>
+    @foreach(var bug in Bugs)
+    {
+       <tr>
+           <td>@bug.Id</td>
+           <td>@bug.Title</td>
+           <td>@bug.Description</td>
+           <td>@bug.Priority</td>
+           <td><a href="/editbug/@bug.Id">Edit Bug</a></td>
+       </tr>
+    }
+</table>
+
+
+@code {
+
+    [Inject]
+    public IBugService BugService{ get; set; }
+
+    public List<Bug> Bugs { get; set; }
+
+    public string Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Id = BugService.UpdateBug().OrderBy(x => x.Priority).ToList();
+    }
+
+}

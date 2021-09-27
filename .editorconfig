@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0006: Metadata file 'C:\Users\admin.christian.step\Source\Repos\crxxtn\csharp-blazor-bug-tracking\BugTrackerUI\bin\Debug\netcoreapp3.1\BugTrackerUI.dll' could not be found
+dotnet_diagnostic.CS0006.severity = none

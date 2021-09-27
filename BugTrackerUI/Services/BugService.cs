@@ -16,9 +16,21 @@ namespace BugTrackerUI.Services
             Bugs.Add(newBug);
         }
 
-        public List<Bug> GetBugs()
+        public Bug GetBug(int id)
+        {
+            //return Bugs.FirstOrDefault(x => x.Id == id);
+            return Bugs.Where(x => x.Id == id).First();
+        }
+
+        public IEnumerable<Bug> GetBugs()
         {
             return Bugs;
         }
+
+        public void UpdateBug(Bug bug)
+        {
+            throw new NotImplementedException();
+        }
     }
+
 }

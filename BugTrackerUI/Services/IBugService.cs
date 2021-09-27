@@ -7,8 +7,10 @@ namespace BugTrackerUI
 {
     public interface IBugService
     {
-        List<Bug> GetBugs();
-
+        Bug GetBug(int id);
+        IEnumerable<Bug> GetBugs();
         void AddBug(Bug newBug);
+        void UpdateBug(Bug bug);
     }
 }
+
