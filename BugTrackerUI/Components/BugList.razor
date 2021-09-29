@@ -8,6 +8,7 @@
            <td>@bug.Title</td>
            <td>@bug.Description</td>
            <td>@bug.Priority</td>
+           <td><a href="/editbug/@bug.Id">Edit</a></td>
        </tr>
     }
 </table>
@@ -18,22 +19,11 @@
     [Inject]
     public IBugService BugService{ get; set; }
 
-    public List<Bug> Bugs { get; set; }
+    public IEnumerable<Bug> Bugs { get; set; }
 
     protected override void OnInitialized()
     {
-        Bugs = BugService.GetBugs().OrderBy(x => x.Priority).ToList();
+        Bugs = BugService.GetBugs().OrderBy(x => x.Priority);
     }
-
-    public Bug AddBug { get; set; } = new Bug();
-
-    protected void HandleValidSubmit()
-    {
-        BugService.AddBug(AddBug);
-        NavService.NavigateTo("");
-    }
-
-    [Inject]
-    public NavigationManager NavService { get; set; }
 
 }

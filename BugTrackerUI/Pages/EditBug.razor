@@ -1,10 +1,37 @@
 ﻿@page "/editbug/{id:int}"
 
-<h3>EditBug</h3>
+<h3>EditBug - @UpdateBug.Title</h3>
+
+<EditForm OnValidSubmit="HandleValidSubmit" Model="UpdateBug">
+     <InputText @bind-Value="@UpdateBug.Description" placeholder="Enter Description" />
+     <InputNumber @bind-Value="@UpdateBug.Priority" placeholder="Priority" />
+     <button type="submit">Edit Bug</button>
+     <DataAnnotationsValidator />
+     <ValidationSummary />
+
+</EditForm>
 
 @code {
+
+    [Inject]
+    public IBugService BugService { get; set; }
 
     [Parameter]
     public int Id { get; set; }
 
+      protected void HandleValidSubmit()
+    {
+        BugService.UpdateBug(UpdateBug);
+        NavService.NavigateTo("");
+    }
+
+    protected override void OnInitialized()
+    {
+        UpdateBug = BugService.GetBug(Id);
+    }
+
+    public Bug UpdateBug { get; set; }
+
+    [Inject]
+    public NavigationManager NavService { get; set; }
 }

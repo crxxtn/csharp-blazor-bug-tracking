@@ -29,7 +29,8 @@ namespace BugTrackerUI.Services
 
         public void UpdateBug(Bug bug)
         {
-            throw new NotImplementedException();
+            Bugs.Remove(Bugs.FirstOrDefault(x => x.Id == bug.Id));
+            Bugs.Add(bug);
         }
     }
 
