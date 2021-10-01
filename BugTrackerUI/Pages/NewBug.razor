@@ -20,6 +20,7 @@
 
     protected void HandleValidSubmit()
     {
+        AddBug.IsOpen = true;
         BugService.AddBug(AddBug);
         NavService.NavigateTo("");
     }

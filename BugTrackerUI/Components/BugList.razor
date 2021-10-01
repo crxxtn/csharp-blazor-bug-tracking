@@ -1,39 +1,47 @@
-﻿<h3>All Bugs</h3>
+﻿<h3>Open Bugs</h3>
 
 <table>
-    @foreach(var bug in Bugs)
+    @foreach(var bug in Bugs.Where(x => x.IsOpen))
     {
        <tr>
            <td>@bug.Id</td>
            <td>@bug.Title</td>
            <td>@bug.Description</td>
            <td>@bug.Priority</td>
+           <td><a href="/editbug/@bug.Id">Edit</a></td>
        </tr>
     }
 </table>
 
+<h3>Closed Bugs</h3>
+
+<table>
+    @foreach(var bug in Bugs.Where(x => !x.IsOpen))
+    {
+       <tr>
+           <td>@bug.Id</td>
+           <td>@bug.Title</td>
+           <td>@bug.Description</td>
+           <td>@bug.Priority</td>
+           <td><a href="/editbug/@bug.Id">Edit</a></td>
+       </tr>
+    }
+</table>
+
+@*<div class="open-closed-status-buttons">
+    <button type="button" @onclick="">Close Bug</button>
+</div>*@
 
 @code {
 
     [Inject]
     public IBugService BugService{ get; set; }
 
-    public List<Bug> Bugs { get; set; }
+    public IEnumerable<Bug> Bugs { get; set; }
 
     protected override void OnInitialized()
     {
-        Bugs = BugService.GetBugs().OrderBy(x => x.Priority).ToList();
+        Bugs = BugService.GetBugs().OrderBy(x => x.Priority);
     }
-
-    public Bug AddBug { get; set; } = new Bug();
-
-    protected void HandleValidSubmit()
-    {
-        BugService.AddBug(AddBug);
-        NavService.NavigateTo("");
-    }
-
-    [Inject]
-    public NavigationManager NavService { get; set; }
 
 }
