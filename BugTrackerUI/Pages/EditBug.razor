@@ -5,7 +5,8 @@
 <EditForm OnValidSubmit="HandleValidSubmit" Model="UpdateBug">
      <InputText @bind-Value="@UpdateBug.Description" placeholder="Enter Description" />
      <InputNumber @bind-Value="@UpdateBug.Priority" placeholder="Priority" />
-     <button type="submit">Edit Bug</button>
+     <InputCheckbox @bind-Value="@UpdateBug.IsOpen"></InputCheckbox>
+      <button type="submit">Edit Bug</button>
      <DataAnnotationsValidator />
      <ValidationSummary />
 
@@ -21,6 +22,7 @@
 
       protected void HandleValidSubmit()
     {
+        
         BugService.UpdateBug(UpdateBug);
         NavService.NavigateTo("");
     }
